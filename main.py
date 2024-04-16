@@ -3,7 +3,7 @@ from tkinter import ttk
 from PIL import Image,ImageTk
 import tkinter.messagebox
 import tkinter.simpledialog
-import math
+PI = 3.14
 
 #Mark 'o Soft(ware): Mark 'o Soft Math Related Tools (C) 2024
 
@@ -13,7 +13,7 @@ import math
 #12 does canvas exist (obsolete)
 #13 can -1st option open console & debug? + dev mode in help
 #14 is output simple (if true then no explanation)
-optionTable = [True, 1, "hello", None, 2, None, None, None, None, None, True, False, False, False, False]
+optionTable = [True, 1, "hello", None, 3, None, None, None, None, None, True, False, False, False, False]
 
 a = 0
 b = 0
@@ -27,51 +27,23 @@ e = 0
 f = 0
 r = 0
 
-unitConverts = ["...Farenheiht to Celcius.", "...Celcius to Farenheiht."]
+percent = 0
+percentfoot = 0
 
-def unitConvertWindow():
-    if optionTable[13] == True:
-        pass
+def percentCalc():
+    if optionTable[14] == True:
+        tkinter.messagebox.showinfo(title="Mark 'o Soft Math Related Tools: Output of percentCalc", message=str(percentfoot*(percent/100)))
     else:
-        tkinter.messagebox.showerror(title="Mark 'o Soft Math Related Tools", message="Unfinished.\nChange options to access.\nNote: this is locked for a reason!!")
-        return 1
-    unitConvertWind = Toplevel()
-    unitConvertWind.maxsize(300, 250)
-#    unitConvertWind.minsize(300, 250)
-    conWin = ttk.Frame(unitConvertWind, padding=15)
-    conWin.grid()
-    ttk.Label(conWin, text="Convert units!", image=imgSmile, compound= LEFT, padding=0).grid(column=1, row=0)
-    ttk.Label(conWin, text="                          ", compound= LEFT, padding=0).grid(column=0, row=0)
-    ttk.Label(conWin, text="                Convert...", compound= LEFT, padding=0).grid(column=0, row=1)
-    ttk.Label(conWin, text="                          ", compound= LEFT, padding=0).grid(column=0, row=2)
-    ttk.Label(conWin, text="                          ", compound= LEFT, padding=0).grid(column=0, row=3)
+        tkinter.messagebox.showinfo(title="Mark 'o Soft Math Related Tools: Output of percentCalc", message=str(percent) + "% of " + str(percentfoot) + " is " + str(percentfoot*(percent/100)) + ".")
 
-    anumbox = Spinbox(conWin, from_=-999999999, to=999999999)
-    anumbox.grid(column=1, row=1)
-    
-    convertbox = ttk.Combobox(conWin, values = unitConverts)
-    convertbox.set("...pick a unit pair.")
-    convertbox.grid(column=1, row=2)
-    
-    ttk.Button(conWin, text="Calculate...", image=imgCalcEdit, compound= LEFT, command= lambda: unitConvert(anumbox.get(), convertbox.get())).grid(column=1, row=3)
-    
-    ttk.Label(conWin, text="                          ", compound= LEFT, padding=0).grid(column=2, row=0)
-    ttk.Label(conWin, text="                          ", compound= LEFT, padding=0).grid(column=2, row=1)
-    ttk.Label(conWin, text="                          ", compound= LEFT, padding=0).grid(column=2, row=2)
-    ttk.Label(conWin, text="                          ", compound= LEFT, padding=0).grid(column=2, row=3)
-    unitConvertWind.title("Mark 'o Soft Math Related Tools: Unit conversion")
-    unitConvertWind.mainloop()
-    pass
+def percentSet():
+    global percent
+    percent = tkinter.simpledialog.askfloat("Mark 'o Soft Math Related Tools: Input percent", "Input value for percent.\nSyntax: 3.14; 43.0")
 
-
-def unitConvert(anum, convert):
-#    if convert == "...Farenheiht to Celcius.":
-#        
-    print(anum)
-    print(convert)
-    pass
-
-
+def percentfootSet():
+    global percentfoot
+    percentfoot = tkinter.simpledialog.askfloat("Mark 'o Soft Math Related Tools: Input percentfoot", "Input value for percentfoot.\nSyntax: 3.14; 43.0")
+        
 def area2DSquare():
     if optionTable[14] == True:
         tkinter.messagebox.showinfo(title="Mark 'o Soft Math Related Tools: Output of area2DSquare", message="Square:\nArea=" + str(a*a) + "\nParemeter=" + str(2*a) + "\n")
@@ -116,9 +88,9 @@ def area2Rhombus():
 
 def area2DCircle():
     if optionTable[14] == True:
-        tkinter.messagebox.showinfo(title="Mark 'o Soft Math Related Tools: Output of area2DCircle", message="Circle:\nArea=" + str(r*r*math.pi) + "\nParemeter=" + str(2*r*math.pi) + "\n")
+        tkinter.messagebox.showinfo(title="Mark 'o Soft Math Related Tools: Output of area2DCircle", message="Circle:\nArea=" + str(r*r*PI) + "\nParemeter=" + str(2*r*PI) + "\n")
     else:
-        tkinter.messagebox.showinfo(title="Mark 'o Soft Math Related Tools: Output of area2DCircle", message="Circle:\na=" + str(a) + "\nπ=" + str(math.pi) + "\nArea=(r*r*π)/2\nArea=(" + str(r) + "*" + str(r) + "*" + str(math.pi) + "\nArea=" + str(r*r*math.pi) + "\nParemeter=2*r*π\nParemeter=r*" + str(r) + "*" + str(math.pi) + "\nParemeter=" + str(2*r*math.pi) + "\n")
+        tkinter.messagebox.showinfo(title="Mark 'o Soft Math Related Tools: Output of area2DCircle", message="Circle:\nr=" + str(r) + "\nπ=" + str(PI) + "\nArea=r*r*π\nArea=" + str(r) + "*" + str(r) + "*" + str(PI) + "\nArea=" + str(r*r*PI) + "\nParemeter=2*r*π\nParemeter=" + str(r) + "*" + str(r) + "*" + str(PI) + "\nParemeter=" + str(2*r*PI) + "\n")
 
 def aSideSet():
     global a
@@ -222,7 +194,8 @@ def helpAbout():
 root = Tk()
 
 
-
+iconSheet = Image.open('shape/sheet.png')
+imgSheet = ImageTk.PhotoImage(iconSheet)
 
 iconCog = Image.open('res/cog.png')
 imgCog = ImageTk.PhotoImage(iconCog)
@@ -276,7 +249,7 @@ progmenu.add_separator()
 progmenu.add_command(label="Exit", image=imgStop, compound= LEFT, command=stopProg)
 menubar.add_cascade(label="Program", menu=progmenu)
 
-vartools = Menu(menubar, tearoff=0)
+vartools = Menu(menubar, tearoff=1)
 vartools.add_command(label="...a side...", image=imgCalcEdit, compound= LEFT, command=aSideSet)
 vartools.add_command(label="...b side...", image=imgCalcEdit, compound= LEFT, command=bSideSet)
 vartools.add_command(label="...c side...", image=imgCalcEdit, compound= LEFT, command=cSideSet)
@@ -294,7 +267,8 @@ vartools.add_command(label="...r radius...", image=imgCalcEdit, compound= LEFT, 
 menubar.add_cascade(label="Set value for...", menu=vartools)
 
 flatgeotoolsmenu = Menu(menubar, tearoff=0)
-flatgeotoolsmenuarea = Menu(flatgeotoolsmenu, tearoff=0)
+flatgeotoolsmenu.add_command(label="Reference sheet...", compound= LEFT, command=lambda: iconSheet.show())
+flatgeotoolsmenuarea = Menu(flatgeotoolsmenu, tearoff=1)
 flatgeotoolsmenuarea.add_command(label="...square...", image=imgSquare, compound= LEFT, command=area2DSquare)
 flatgeotoolsmenuarea.add_command(label="...rectangle...", image=imgRectangle, compound= LEFT, command=area2DRectangle)
 flatgeotoolsmenuarea.add_separator()
@@ -308,9 +282,12 @@ flatgeotoolsmenuarea.add_command(label="...circle...", image=imgCircle, compound
 flatgeotoolsmenu.add_cascade(label="Calculate area and paremeter for...", menu=flatgeotoolsmenuarea)
 menubar.add_cascade(label="2D Geometry Tools", menu=flatgeotoolsmenu)
 
-unitconvertmenu = Menu(menubar, tearoff=0)
-unitconvertmenu.add_command(label="Unit conversion", image=imgBook, compound= LEFT, command=unitConvertWindow)
-menubar.add_cascade(label="Unit conversion", menu=unitconvertmenu)
+precentmenu = Menu(menubar, tearoff=0)
+precentmenu.add_command(label="Input precent...", compound= LEFT, command=percentSet)
+precentmenu.add_command(label="Input whole...", compound= LEFT, command=percentfootSet)
+precentmenu.add_separator()
+precentmenu.add_command(label="Quick Percent...", image=imgBook, compound= LEFT, command=percentCalc)
+menubar.add_cascade(label="Percent calulations", menu=precentmenu)
 
 root.config(menu=menubar)
 
