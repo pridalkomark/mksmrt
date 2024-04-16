@@ -14,10 +14,12 @@ Creative Commons Attribution 2.5 License.
 [ http://creativecommons.org/licenses/by/2.5/ ](http://creativecommons.org/licenses/by/2.5/)
 
 ### How to use:
-#### Features currently in version 1.2
-+ Area and paremeter calculations with floating point math for most types of 2d shapes.
+#### Features currently in version 1.3
++ Area and paremeter calculations with floating point math for most types of 2d shapes
++ Area and paremeter referece sheet
 + About box
 + Debug tools
++ Percent calculations
 
 #### How to calculate a shape's area and paremeter?
 1. Open the `Set value for...` menu.
